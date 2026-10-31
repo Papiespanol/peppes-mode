@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Peppes Mode — Mode i Bollnäs, Västra Stationsgatan 7</title>
+<meta name="description" content="Peppes Mode på Västra Stationsgatan 7 i Bollnäs. Besök butiken och hitta din stil.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,700;1,6..96,500&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --stone:#EFEAE2; --stone-2:#E4DDD1; --ink:#151515; --clay:#B4573A; --sage:#A9B79B; --sand:#D9C7AE;
+    --text:#151515; --muted:#615B54; --line:rgba(21,21,21,.16);
+    --bg:var(--stone); --fg:var(--text);
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+    color-scheme:light dark;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#121110; --fg:#F1ECE4; --text:#F1ECE4; --muted:#B5ADA1; --line:rgba(241,236,228,.18);
+      --stone:#121110; --stone-2:#1B1917; --clay:#D2775A;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#121110; --fg:#F1ECE4; --text:#F1ECE4; --muted:#B5ADA1; --line:rgba(241,236,228,.18);
+    --stone:#121110; --stone-2:#1B1917; --clay:#D2775A;
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:calc(72px + env(safe-area-inset-top,0px));-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--fg);font-family:Karla,"Helvetica Neue",Arial,sans-serif;font-size:clamp(16px,1.05vw,17.5px);line-height:1.65;overflow-x:hidden}
+  h1,h2,h3{font-family:"Bodoni Moda",Georgia,serif;font-weight:500;margin:0;line-height:1.02;letter-spacing:-.01em}
+  h1{font-size:clamp(3rem,9vw,6.8rem)}
+  h2{font-size:clamp(2.1rem,5vw,3.6rem)}
+  h3{font-size:clamp(1.5rem,2.6vw,2.1rem)}
+  p{margin:0 0 1em;max-width:58ch}
+  a{color:inherit}
+  svg{max-width:100%}
+  :focus-visible{outline:2px solid var(--clay);outline-offset:3px}
+  .wrap{width:min(1180px,92vw);margin-inline:auto}
+  .prog{position:fixed;top:0;left:0;right:0;height:3px;background:var(--clay);transform-origin:left;transform:scaleX(0);z-index:70}
+
+  header.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);background:color-mix(in srgb,var(--bg) 80%,transparent);border-bottom:1px solid transparent;transition:border-color .3s}
+  header.nav.is-stuck{border-bottom-color:var(--line)}
+  .nav__in{display:flex;align-items:center;gap:1.5rem;height:72px}
+  .brand{margin-right:auto;text-decoration:none;font-family:"Bodoni Moda",serif;font-weight:700;font-size:1.5rem;letter-spacing:.02em}
+  .nav a.link{display:none;text-decoration:none;color:var(--muted);font-size:.95rem}
+  .nav a.link:hover{color:var(--fg)}
+  @media (min-width:820px){.nav a.link{display:inline}}
+  .btn{display:inline-flex;align-items:center;justify-content:center;padding:.85rem 1.7rem;border:1px solid var(--ink);background:var(--ink);color:#F1ECE4;text-decoration:none;font-weight:600;font-size:.92rem;letter-spacing:.06em;text-transform:uppercase;transition:background .2s,transform .15s;white-space:nowrap}
+  .btn:hover{background:var(--clay);border-color:var(--clay)}
+  .btn:active{transform:translateY(1px)}
+  .btn--ghost{background:transparent;color:var(--fg);border-color:var(--line)}
+  .btn--ghost:hover{background:color-mix(in srgb,var(--fg) 8%,transparent);border-color:var(--line)}
+  :root[data-theme="dark"] .btn:not(.btn--ghost){background:#F1ECE4;color:#151515;border-color:#F1ECE4}
+  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .btn:not(.btn--ghost){background:#F1ECE4;color:#151515;border-color:#F1ECE4}}
+  .nav .btn{padding:.6rem 1.2rem}
+
+  .hero{position:relative;overflow:hidden}
+  .hero__grid{display:grid;gap:1.5rem;align-items:center;padding:clamp(2.5rem,7vw,5rem) 0 clamp(3rem,7vw,5rem);grid-template-columns:1fr}
+  @media (min-width:900px){.hero__grid{grid-template-columns:1.15fr .85fr}}
+  .tag{font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--clay);font-weight:700;margin-bottom:1.1rem}
+  .hero h1 em{color:var(--clay)}
+  .lede{font-size:clamp(1.05rem,1.6vw,1.25rem);color:var(--muted);max-width:42ch;margin-top:1.2rem}
+  .cta{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.9rem}
+  .art{position:relative;max-width:440px;margin-inline:auto;width:100%;aspect-ratio:4/5}
+  .art .blob{position:absolute;inset:6% 4% 0;background:var(--sand);border-radius:46% 54% 50% 50%/40% 40% 60% 60%}
+  :root[data-theme="dark"] .art .blob{background:#2A2520}
+  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .art .blob{background:#2A2520}}
+  .art svg{position:absolute;inset:0;width:100%;height:100%}
+  .sq{position:absolute;width:54px;height:54px;border:2px solid var(--clay);border-radius:50%}
+
+  /* scroll-linked marquee */
+  .band{overflow:hidden;border-block:1px solid var(--line);padding:1rem 0;background:var(--stone-2)}
+  .band__t{display:flex;gap:3rem;width:max-content;font-family:"Bodoni Moda",serif;font-style:italic;font-size:clamp(2rem,6vw,4.2rem);white-space:nowrap;will-change:transform;color:transparent;-webkit-text-stroke:1px var(--fg)}
+  .band__t span:nth-child(3n){color:var(--clay);-webkit-text-stroke:0}
+
+  section{padding:clamp(4.2rem,9vw,7.5rem) 0}
+  .kicker{font-size:.76rem;letter-spacing:.22em;text-transform:uppercase;color:var(--clay);font-weight:700;margin-bottom:1rem}
+  .lead{font-size:clamp(1.1rem,1.8vw,1.35rem);max-width:38ch;line-height:1.5}
+  .two{display:grid;gap:clamp(2rem,5vw,4.5rem);grid-template-columns:1fr}
+  @media (min-width:900px){.two{grid-template-columns:.85fr 1.15fr;align-items:start}}
+
+  /* stacking cards */
+  .stack{padding-top:0}
+  .stack__head{margin-bottom:2.2rem}
+  .card{position:sticky;top:calc(88px + var(--i)*22px);display:grid;gap:0;grid-template-columns:1fr;border:1px solid var(--line);background:var(--bg);margin-bottom:34vh;transform-origin:center top;will-change:transform}
+  .card:last-child{margin-bottom:0}
+  @media (min-width:800px){.card{grid-template-columns:1fr 1fr;min-height:420px}}
+  .card figure{margin:0;display:grid;place-items:center;padding:1.5rem;min-height:280px}
+  .card figure svg{width:min(70%,260px);height:auto}
+  .card .txt{padding:clamp(1.6rem,3.5vw,3rem);display:flex;flex-direction:column;justify-content:center;gap:.8rem}
+  .card .txt p{color:var(--muted);margin:0}
+  .card .num{font-family:"Bodoni Moda",serif;font-size:1rem;color:var(--clay)}
+  .f1{background:var(--sand)}.f2{background:var(--sage)}.f3{background:#E3B7A5}
+  :root[data-theme="dark"] .f1{background:#3A322A}:root[data-theme="dark"] .f2{background:#2D3429}:root[data-theme="dark"] .f3{background:#3F2B25}
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]) .f1{background:#3A322A}
+    :root:not([data-theme="light"]) .f2{background:#2D3429}
+    :root:not([data-theme="light"]) .f3{background:#3F2B25}
+  }
+
+  .why{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:2.6rem}
+  @media (min-width:760px){.why{grid-template-columns:repeat(3,1fr)}}
+  .why div{background:var(--bg);padding:1.9rem}
+  .why svg{width:38px;height:38px;stroke:var(--clay);fill:none;stroke-width:1.5;margin-bottom:.9rem}
+  .why p{color:var(--muted);font-size:.96rem;margin:.4rem 0 0}
+
+  .map{border:1px solid var(--line);background:var(--stone-2);aspect-ratio:4/3;width:100%;display:block}
+  .addr{margin-top:1.8rem;border-top:1px solid var(--line)}
+  .addr div{display:grid;grid-template-columns:8rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--line)}
+  .addr dt{font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .addr dd{margin:0;font-weight:600}
+  .addr a{text-decoration:none;border-bottom:1px solid var(--clay)}
+
+  .final{background:var(--ink);color:#F1ECE4;text-align:center}
+  :root[data-theme="dark"] .final{background:#1B1917}
+  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .final{background:#1B1917}}
+  .final h2{margin-inline:auto;max-width:15ch}
+  .final p{color:#CFC7BA;margin-inline:auto;margin-top:1rem}
+  .final .cta{justify-content:center}
+  .final .btn{background:#F1ECE4;color:#151515;border-color:#F1ECE4}
+  .final .btn:hover{background:var(--clay);border-color:var(--clay);color:#fff}
+  .final .btn--ghost{background:transparent;color:#F1ECE4;border-color:rgba(241,236,228,.4)}
+
+  footer{padding:2.4rem 0;color:var(--muted);font-size:.9rem;border-top:1px solid var(--line)}
+  .foot{display:flex;flex-wrap:wrap;gap:1rem 2rem;justify-content:space-between}
+  footer a{text-decoration:none;color:var(--fg)}
+
+  .r{opacity:0;transform:translateY(24px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+  .r.is-in{opacity:1;transform:none}
+  .r[data-d="1"]{transition-delay:.1s}.r[data-d="2"]{transition-delay:.2s}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}.r{opacity:1;transform:none;transition:none}
+    .card{position:static;margin-bottom:1.2rem}
+  }
+</style>
+</head>
+<body>
+<div class="prog" id="prog"></div>
+
+<header class="nav" id="nav">
+  <div class="wrap nav__in">
+    <a class="brand" href="#top">Peppes Mode</a>
+    <a class="link" href="#stil">Stil</a>
+    <a class="link" href="#besok">Besök butiken</a>
+    <a class="link" href="#hitta">Hitta hit</a>
+    <a class="btn" href="#hitta">Hitta hit</a>
+  </div>
+</header>
+
+<div class="hero" id="top">
+  <div class="wrap hero__grid">
+    <div>
+      <p class="tag">Modebutik · Bollnäs</p>
+      <h1>Hitta din <em>stil</em> mitt i stan</h1>
+      <p class="lede">Peppes Mode på Västra Stationsgatan – kläder och mode i Bollnäs, med personlig service i butiken.</p>
+      <div class="cta">
+        <a class="btn" href="#hitta">Besök butiken</a>
+        <a class="btn btn--ghost" href="#stil">Se vår stil</a>
+      </div>
+    </div>
+    <div class="art" aria-hidden="true">
+      <div class="blob" data-par="0.04"></div>
+      <i class="sq" data-par="-0.14" style="top:6%;right:6%"></i>
+      <i class="sq" data-par="-0.24" style="bottom:14%;left:0;width:30px;height:30px;background:var(--sage);border:0"></i>
+      <svg viewBox="0 0 300 380" data-par="0.07">
+        <path d="M118 46q32 22 64 0l22 38-22 12v28q40 40 48 166H70q8-126 48-166V96L96 84z" fill="#151515"/>
+        <path d="M118 46q32 22 64 0" fill="none" stroke="#B4573A" stroke-width="4"/>
+        <path d="M122 124h56M114 200h72" stroke="#B4573A" stroke-width="3" stroke-linecap="round"/>
+        <path d="M140 28q10-18 20 0" fill="none" stroke="#B4573A" stroke-width="4" stroke-linecap="round"/>
+        <path d="M70 336h160" stroke="#151515" stroke-width="3" opacity=".25"/>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<div class="band" aria-hidden="true">
+  <div class="band__t" id="marq">
+    <span>Mode</span><span>Stil</span><span>Bollnäs</span><span>Mode</span><span>Stil</span><span>Bollnäs</span><span>Mode</span><span>Stil</span><span>Bollnäs</span><span>Mode</span><span>Stil</span><span>Bollnäs</span>
+  </div>
+</div>
+
+<section id="stil">
+  <div class="wrap two">
+    <div class="r"><p class="kicker">Om butiken</p><h2>Kläder du faktiskt vill ha på dig</h2></div>
+    <div class="r" data-d="1">
+      <p class="lead">Mode ska kännas rätt – i passform, i känsla och i vardagen.</p>
+      <p style="color:var(--muted)">Hos Peppes Mode i Bollnäs kan du prova på plats, få hjälp av personalen och hitta plagg som passar just din stil.</p>
+    </div>
+  </div>
+</section>
+
+<section class="stack" id="kollektion">
+  <div class="wrap">
+    <div class="stack__head r"><p class="kicker">Stilar</p><h2>Något för varje tillfälle</h2></div>
+    <article class="card" style="--i:0">
+      <figure class="f1"><svg viewBox="0 0 200 240" aria-label="Illustration av en blus"><path d="M70 30q30 20 60 0l36 30-20 30-16-10v110H70V80L54 90 34 60z" fill="#151515"/><path d="M70 30q30 20 60 0" fill="none" stroke="#B4573A" stroke-width="4"/></svg></figure>
+      <div class="txt"><span class="num">01</span><h3>Vardag</h3><p>Plagg som funkar från morgon till kväll, enkla att kombinera.</p></div>
+    </article>
+    <article class="card" style="--i:1">
+      <figure class="f2"><svg viewBox="0 0 200 240" aria-label="Illustration av en klänning"><path d="M82 26q18 16 36 0l10 22-10 10v22q34 40 40 134H42q6-94 40-134V58L72 48z" fill="#151515"/><path d="M84 80h32" stroke="#B4573A" stroke-width="4" stroke-linecap="round"/></svg></figure>
+      <div class="txt"><span class="num">02</span><h3>Fest</h3><p>Något extra när kvällen ska bli minnesvärd.</p></div>
+    </article>
+    <article class="card" style="--i:2">
+      <figure class="f3"><svg viewBox="0 0 200 240" aria-label="Illustration av en jacka"><path d="M64 28l36 14 36-14 40 36-18 40-16-8v108H58V96l-16 8-18-40z" fill="#151515"/><path d="M100 42v166" stroke="#B4573A" stroke-width="4"/><circle cx="92" cy="110" r="3" fill="#B4573A"/><circle cx="92" cy="140" r="3" fill="#B4573A"/></svg></figure>
+      <div class="txt"><span class="num">03</span><h3>Nytt för säsongen</h3><p>Kom förbi och se vad som kommit in – lagret byts löpande.</p></div>
+    </article>
+  </div>
+</section>
+
+<section id="besok" style="padding-top:clamp(2rem,5vw,4rem)">
+  <div class="wrap">
+    <div class="r"><p class="kicker">Varför handla lokalt</p><h2>Bättre i butiken</h2></div>
+    <div class="why">
+      <div class="r"><svg viewBox="0 0 40 40"><path d="M10 8h20l2 24H8zM15 14a5 5 0 0 0 10 0"/></svg><h3>Prova på plats</h3><p>Känn på materialet och se hur plagget sitter innan du bestämmer dig.</p></div>
+      <div class="r" data-d="1"><svg viewBox="0 0 40 40"><circle cx="20" cy="14" r="6"/><path d="M8 34c0-8 5-12 12-12s12 4 12 12"/></svg><h3>Personlig hjälp</h3><p>Få tips av personalen om passform och kombinationer.</p></div>
+      <div class="r" data-d="2"><svg viewBox="0 0 40 40"><path d="M20 34s-12-8-12-17a7 7 0 0 1 12-5 7 7 0 0 1 12 5c0 9-12 17-12 17z"/></svg><h3>Mitt i Bollnäs</h3><p>Lättillgängligt nära stationen på Västra Stationsgatan.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="hitta" style="padding-top:0">
+  <div class="wrap two">
+    <div class="r">
+      <p class="kicker">Hitta hit</p>
+      <h2>Västra Stationsgatan 7</h2>
+      <dl class="addr">
+        <div><dt>Adress</dt><dd>Västra Stationsgatan 7, 821 43 Bollnäs</dd></div>
+        <div><dt>Öppettider</dt><dd><a href="https://maps.app.goo.gl/6eDuT1f4Wh5tCAcJ6" target="_blank" rel="noopener">Se aktuella tider på Google Maps</a></dd></div>
+      </dl>
+      <a class="btn" style="margin-top:1.6rem" href="https://maps.app.goo.gl/6eDuT1f4Wh5tCAcJ6" target="_blank" rel="noopener">Vägbeskrivning</a>
+      <!-- LÄGG IN: <a class="btn btn--ghost" href="tel:+46...">Ring oss</a> -->
+    </div>
+    <div class="r" data-d="1">
+      <svg class="map" viewBox="0 0 420 315" role="img" aria-label="Förenklad karta över butikens läge i Bollnäs">
+        <rect width="420" height="315" fill="var(--stone-2)"/>
+        <g stroke="var(--line)" stroke-width="7" fill="none"><path d="M70 0V315M320 0V315M0 80H420M0 240H420"/></g>
+        <path d="M0 160H420" stroke="var(--clay)" stroke-width="10" opacity=".45"/>
+        <circle cx="200" cy="150" r="34" fill="none" stroke="var(--clay)" stroke-width="1.5" opacity=".6"/>
+        <rect x="176" y="130" width="48" height="40" fill="var(--ink)"/>
+        <text x="190" y="156" font-family="Bodoni Moda, serif" font-size="18" fill="#F1ECE4">PM</text>
+        <text x="236" y="144" font-family="Karla, sans-serif" font-size="13" fill="var(--fg)">Peppes Mode</text>
+        <text x="236" y="161" font-family="Karla, sans-serif" font-size="11" fill="var(--muted)">Västra Stationsgatan 7</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <h2 class="r">Kom förbi och prova</h2>
+    <p class="r" data-d="1">Vi finns på Västra Stationsgatan 7 i Bollnäs.</p>
+    <div class="cta r" data-d="2"><a class="btn" href="#hitta">Hitta hit</a><a class="btn btn--ghost" href="#stil">Se vår stil</a></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <div><b style="font-family:'Bodoni Moda',serif;font-size:1.2rem">Peppes Mode</b><br>Västra Stationsgatan 7, 821 43 Bollnäs</div>
+    <div><a href="#stil">Stil</a> &nbsp; <a href="#besok">Besök butiken</a> &nbsp; <a href="#hitta">Hitta hit</a></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -12% 0px',threshold:.15});
+  document.querySelectorAll('.r').forEach(function(el){io.observe(el)});
+  var prog=document.getElementById('prog'),nav=document.getElementById('nav'),marq=document.getElementById('marq'),
+      par=[].slice.call(document.querySelectorAll('[data-par]')),cards=[].slice.call(document.querySelectorAll('.card')),t=false;
+  function frame(){
+    t=false;
+    var y=scrollY,max=Math.max(document.body.scrollHeight-innerHeight,1);
+    prog.style.transform='scaleX('+Math.min(y/max,1)+')';
+    nav.classList.toggle('is-stuck',y>24);
+    if(reduce)return;
+    par.forEach(function(el){el.style.transform='translate3d(0,'+(y*parseFloat(el.dataset.par))+'px,0)'});
+    var m=marq.parentElement.getBoundingClientRect();
+    marq.style.transform='translate3d('+(-(y*0.35)%(marq.scrollWidth/2||1))+'px,0,0)';
+    cards.forEach(function(c,i){
+      var n=cards[i+1];if(!n){c.style.transform='';return}
+      var d=n.getBoundingClientRect().top-c.getBoundingClientRect().top;
+      var k=Math.max(0,Math.min(1,1-d/(innerHeight*.6)));
+      c.style.transform='scale('+(1-k*.05)+')';
+    });
+  }
+  function on(){if(!t){t=true;requestAnimationFrame(frame)}}
+  addEventListener('scroll',on,{passive:true});addEventListener('resize',on);frame();
+})();
+</script>
+</body>
+</html>
